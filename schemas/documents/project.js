@@ -1,4 +1,5 @@
 import { FaProjectDiagram } from "react-icons/fa";
+import moment from "moment";
 
 export default {
   name: "project",
@@ -6,10 +7,35 @@ export default {
   icon: FaProjectDiagram,
   type: "document",
   fields: [
+    // {
+    //   name: "coverPhoto",
+    //   title: "Cover photo",
+    //   type: "object",
+    //   fields: [
+    //     {
+    //       name: "internalImg",
+    //       title: "Internal photo",
+    //       type: "image",
+    //       hidden: ({ document }) => document?.coverPhoto.externalImg,
+    //       options: {
+    //         hotspot: true,
+    //       },
+    //     },
+    //     {
+    //       name: "externalImg",
+    //       title: "External photo",
+    //       type: "url",
+    //       hidden: ({ document }) => document?.coverPhoto.internalImg,
+    //     },
+    //   ],
+    // },
     {
       name: "coverPhoto",
       title: "Cover photo",
       type: "image",
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: "title",
@@ -52,4 +78,19 @@ export default {
       type: "date",
     },
   ],
+
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "publishedAt",
+      media: "coverPhoto",
+    },
+    prepare(selection) {
+      const { subtitle } = selection;
+      const date = moment(subtitle).format("MMMM Do YYYY, h:mm a");
+      return Object.assign({}, selection, {
+        subtitle: date && `On ${date}`,
+      });
+    },
+  },
 };
