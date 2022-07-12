@@ -9,5 +9,5 @@ import project from "./documents/project";
 
 export default createSchema({
   name: "default",
-  types: schemaTypes.concat([project, post, author, category, blockContent]),
+  types: schemaTypes.concat([project, blockContent]),
 });
