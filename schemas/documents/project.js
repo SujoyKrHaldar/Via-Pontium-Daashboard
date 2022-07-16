@@ -7,28 +7,6 @@ export default {
   icon: FaProjectDiagram,
   type: "document",
   fields: [
-    // {
-    //   name: "coverPhoto",
-    //   title: "Cover photo",
-    //   type: "object",
-    //   fields: [
-    //     {
-    //       name: "internalImg",
-    //       title: "Internal photo",
-    //       type: "image",
-    //       hidden: ({ document }) => document?.coverPhoto.externalImg,
-    //       options: {
-    //         hotspot: true,
-    //       },
-    //     },
-    //     {
-    //       name: "externalImg",
-    //       title: "External photo",
-    //       type: "url",
-    //       hidden: ({ document }) => document?.coverPhoto.internalImg,
-    //     },
-    //   ],
-    // },
     {
       name: "coverPhoto",
       title: "Cover photo",
@@ -41,6 +19,14 @@ export default {
       name: "title",
       title: "Project title",
       type: "string",
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+      },
     },
     {
       name: "category",
